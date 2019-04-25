@@ -6,4 +6,4 @@ Collaborators:
 
 Stephen Shinn		smshinn@csu.fullerton.edu
 
-Emilio Lopez		
+Emilio Lopez		ealopez1228@csu.fullerton.edu
