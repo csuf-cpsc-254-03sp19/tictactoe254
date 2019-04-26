@@ -1,4 +1,4 @@
-#pragma once
+Moving to headers#pragma once
 #include <SDL.h>
 
 /**
