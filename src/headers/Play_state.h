@@ -1,3 +1,8 @@
+/*
+ * Tic-tac-toe
+ * MIT Licence, Copyright 2017 Chris Kempson (chriskempson.com)
+ */
+
 #pragma once
 #include <SDL.h>
 #include "State.h"
@@ -25,6 +30,9 @@ private:
 	/// The sprite colour to be played, this will be toggled throughout moves 
 	/// and is set to sprite_red here so that red players goes first
 	Grid::sprite_sheet sprite_to_play = grid.sprite_red;
+
+	// Mute BGM Value
+	bool bgm_mute = 0;
 
 	/// Holds Grid.player_red (1), Grid.player_yellow (2) or Grid.player_red + 
 	/// Grid.player_yellow (3) for a draw

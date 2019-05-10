@@ -1,3 +1,8 @@
+/*
+ * Tic-tac-toe
+ * MIT Licence, Copyright 2017 Chris Kempson (chriskempson.com)
+ */
+
 #pragma once
 #include <SDL.h>
 
@@ -65,3 +70,5 @@ private:
     // Points to an instance of SDL_CreateRenderer returned by get_renderer()
     static SDL_Renderer* renderer;
 };
+
+static Game game;
