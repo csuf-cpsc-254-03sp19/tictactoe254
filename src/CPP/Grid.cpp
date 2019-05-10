@@ -1,8 +1,15 @@
+/*
+ * Tic-tac-toe
+ * MIT Licence, Copyright 2017 Chris Kempson (chriskempson.com)
+ */
+
 #include <iostream>
 #include <string>
 #include "Grid.h"
 #include "Setting.h"
 #include "Resource_manager.h"
+#include "Game.h"
+#include "Theme.h"
 
 void Grid::init()
 {
@@ -18,7 +25,7 @@ void Grid::init()
 /**
  * The grid is comprised of a single repeated sprite. The sprite contains an
  * image for a blank cell, a cell with a red nought and a cell with a yellow
- * cross. 
+ * cross.
  */
 void Grid::render()
 {
@@ -27,10 +34,33 @@ void Grid::render()
 		for (int row = 0; row < Setting::grid_rows; row++) {
 
 			// Position sprites in grid layout
-			Resource_manager::get_image("cell_sprite")->set_position(col * Setting::grid_sprite_width, row  * Setting::grid_sprite_height);
+			if(GetTheme() == 1)
+			{
+				Resource_manager::get_image("cell_sprite")->set_position(col * Setting::grid_sprite_width, row  * Setting::grid_sprite_height);
+			}
+			else if(GetTheme() == 2)
+			{
+				Resource_manager::get_image("cell_spriteH")->set_position(col * Setting::grid_sprite_width, row  * Setting::grid_sprite_height);
+			}
+			else
+			{
+				Resource_manager::get_image("cell_spriteA")->set_position(col * Setting::grid_sprite_width, row  * Setting::grid_sprite_height);
+			}
+
 
 			// Render sprite with current clipping rectangle
-			Resource_manager::get_image("cell_sprite")->render(&sprite_clips[cell[col][row].current_sprite]);
+			if(GetTheme() == 1)
+			{
+				Resource_manager::get_image("cell_sprite")->render(&sprite_clips[cell[col][row].current_sprite]);
+			}
+			else if(GetTheme() == 2)
+			{
+				Resource_manager::get_image("cell_spriteH")->render(&sprite_clips[cell[col][row].current_sprite]);
+			}
+			else
+			{
+				Resource_manager::get_image("cell_spriteA")->render(&sprite_clips[cell[col][row].current_sprite]);
+			}
 		}
 	}
 }
@@ -66,7 +96,7 @@ bool Grid::check_for_draw()
 	for (int col = 0; col < Setting::grid_columns; col++) {
 		for (int row = 0; row < Setting::grid_rows; row++) {
 
-			// If any of the cells have a sprite_blank clipping displayed 
+			// If any of the cells have a sprite_blank clipping displayed
 			// there can be no draw
 			if (cell[col][row].current_sprite == sprite_blank) {
 				return false;
@@ -162,11 +192,11 @@ bool Grid::check_for_forwards_diagonal_win(int col, int row, sprite_sheet sprite
 	// Check for Setting::win_count * 2 times for the reason explained below
 	for (int i = 0; i < Setting::win_count * 2; i++) {
 
-		// Count from the bottom of the forwards diagonal to the top. For 
-		// example, on a 3x3 grid where the move made is marked by "4" the 
+		// Count from the bottom of the forwards diagonal to the top. For
+		// example, on a 3x3 grid where the move made is marked by "4" the
 		// check will run in the direction of 1 to 6 starting outside of the
 		// grid as shown below:
-		// 
+		//
 		//       COL 0  1  2
 		//          [ ][ ][6] ROW 0
 		//          [ ][5][ ] ROW 1
@@ -218,14 +248,14 @@ bool Grid::check_for_backwards_diagonal_win(int col, int row, sprite_sheet sprit
 	// Check for Setting::win_count * 2 times for the reason explained below
 	for (int i = 0; i < Setting::win_count * 2; i++) {
 
-		// Count from the top of the backwards diagonal to the bottom. For 
-		// example, on a 3x3 grid where the move made is marked by "5" the 
+		// Count from the top of the backwards diagonal to the bottom. For
+		// example, on a 3x3 grid where the move made is marked by "5" the
 		// check will run in the direction of 1 to 6 starting outside of the
 		// grid as shown below:
-		// 
-		// [1]  
+		//
+		// [1]
 		//    [2]
-		//       [3] 0  1  2 
+		//       [3] 0  1  2
 		//          [4][ ][ ] ROW 0
 		//          [ ][5][ ] ROW 1
 		//          [ ][ ][6] ROW 2
@@ -233,9 +263,9 @@ bool Grid::check_for_backwards_diagonal_win(int col, int row, sprite_sheet sprit
 		// If the move made is marked by "3". The search pattern would look
 		// like the following:
 		//
-		//  
 		//
-		//           0  1  2 
+		//
+		//           0  1  2
 		//          [1][ ][ ] ROW 0
 		//          [ ][2][ ] ROW 1
 		//          [ ][ ][3] ROW 2

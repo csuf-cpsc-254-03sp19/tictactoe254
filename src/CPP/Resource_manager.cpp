@@ -1,3 +1,8 @@
+/*
+ * Tic-tac-toe
+ * MIT Licence, Copyright 2017 Chris Kempson (chriskempson.com)
+ */
+
 #include "Resource_manager.h"
 
 // Define vectors to store pointers to instances of resource classes

@@ -1,3 +1,8 @@
+/*
+ * Tic-tac-toe
+ * MIT Licence, Copyright 2017 Chris Kempson (chriskempson.com)
+ */
+
 #include <iostream>
 #include <string>
 #include <SDL_mixer.h>

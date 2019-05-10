@@ -1,13 +1,33 @@
+/*
+ * Tic-tac-toe
+ * MIT Licence, Copyright 2017 Chris Kempson (chriskempson.com)
+ */
+
 #include "Play_state.h"
 #include "Game.h"
 #include "Setting.h"
 #include "State_manager.h"
 #include "Resource_manager.h"
 #include "Title_state.h"
+#include "Theme.h"
+#include <iostream>
 
 void Play_state::init()
 {
-	Resource_manager::load_image("cell_sprite");
+	cout << "Theme is: " << GetTheme();
+	if(GetTheme() == 1)
+	{
+		Resource_manager::load_image("cell_sprite");;
+	}
+	else if(GetTheme() == 2)
+	{
+		Resource_manager::load_image("cell_spriteH");;
+	}
+	else
+	{
+		Resource_manager::load_image("cell_spriteA");
+	}
+
 	Resource_manager::load_image("red_wins");
 	Resource_manager::load_image("yellow_wins");
 	Resource_manager::load_image("draw");
@@ -16,14 +36,29 @@ void Play_state::init()
 	Resource_manager::load_sound("invalid_move");
 	Resource_manager::load_sound("win");
 	Resource_manager::load_sound("draw");
+	//Resource_manager::load_sound("Spy");
 
 	grid.init();
+
+	//Resource_manager::get_sound("Spy")->play();
 }
 
 void Play_state::handle_events(SDL_Event& event)
 {
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
 		advance_game();
+	}
+	if (event.type == SDL_KEYDOWN) {
+		if (event.key.keysym.sym == SDLK_m)
+		if(bgm_mute) {
+			Resource_manager::load_sound("Spy");
+			Resource_manager::get_sound("Spy")->play();
+			bgm_mute = 0;
+		}
+		else {
+			Resource_manager::unload_sound("Spy");
+			bgm_mute = 1;
+		}
 	}
 }
 
@@ -51,7 +86,18 @@ void Play_state::render()
 
 void Play_state::clean_up()
 {
-	Resource_manager::unload_image("cell_sprite");
+	if(GetTheme() == 1)
+	{
+		Resource_manager::unload_image("cell_sprite");;
+	}
+	else if(GetTheme() == 2)
+	{
+		Resource_manager::unload_image("cell_spriteH");;
+	}
+	else
+	{
+		Resource_manager::unload_image("cell_spriteA");
+	}
 	Resource_manager::unload_image("red_wins");
 	Resource_manager::unload_image("yellow_wins");
 	Resource_manager::unload_image("draw");
@@ -60,6 +106,7 @@ void Play_state::clean_up()
 	Resource_manager::unload_sound("invalid_move");
 	Resource_manager::unload_sound("win");
 	Resource_manager::unload_sound("draw");
+	//Resource_manager::unload_sound("Spy");
 }
 
 void Play_state::advance_game() {
@@ -87,7 +134,7 @@ void Play_state::advance_game() {
 
 	}
 
-	// Else if there was a win or draw, reset the winner, make next sprite 
+	// Else if there was a win or draw, reset the winner, make next sprite
 	// red and clear the grid
 	else {
 		win_type = false;
@@ -102,7 +149,7 @@ bool Play_state::play_a_move(int col, int row) {
 	// If a grid area is empty
 	if (grid.cell[col][row].current_sprite == grid.sprite_blank) {
 
-		// Play the sprite 
+		// Play the sprite
 		grid.cell[col][row].current_sprite = sprite_to_play;
 
 		// Toggle sprite

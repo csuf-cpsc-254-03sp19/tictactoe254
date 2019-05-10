@@ -1,12 +1,30 @@
+/*
+ * Tic-tac-toe
+ * MIT Licence, Copyright 2017 Chris Kempson (chriskempson.com)
+ */
+
 #include "About_state.h"
 #include "Game.h"
 #include "State_manager.h"
 #include "Resource_manager.h"
 #include "Title_state.h"
+#include "Theme.h"
+
 
 void About_state::init()
 {
-	Resource_manager::load_image("about");
+	if(GetTheme() == 1)
+	{
+		Resource_manager::load_image("about");
+	}
+	else if(GetTheme() == 2)
+	{
+		Resource_manager::load_image("aboutH");
+	}
+	else
+	{
+		Resource_manager::load_image("aboutA");
+	}
 	Resource_manager::load_sound("about")->play();
 }
 
@@ -24,11 +42,35 @@ void About_state::update()
 
 void About_state::render()
 {
-	Resource_manager::get_image("about")->render();
+	if(GetTheme() == 1)
+	{
+		Resource_manager::get_image("about")->render();
+	}
+	else if(GetTheme() == 2)
+	{
+		Resource_manager::get_image("aboutH")->render();
+	}
+	else
+	{
+		Resource_manager::get_image("aboutA")->render();
+	}
+
 }
 
 void About_state::clean_up()
 {
-	Resource_manager::unload_image("about");
+	if(GetTheme() == 1)
+	{
+		Resource_manager::unload_image("about");
+	}
+	else if(GetTheme() == 2)
+	{
+		Resource_manager::unload_image("aboutH");
+	}
+	else
+	{
+		Resource_manager::unload_image("aboutA");
+	}
+
 	Resource_manager::unload_sound("about");
 }

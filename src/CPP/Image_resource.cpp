@@ -1,3 +1,8 @@
+/*
+ * Tic-tac-toe
+ * MIT Licence, Copyright 2017 Chris Kempson (chriskempson.com)
+ */
+
 #include <iostream>
 #include <string>
 #include "Image_resource.h"
@@ -45,7 +50,7 @@ bool Image_resource::load_from_file(char* file)
 		return false;
 	}
 
-	// Grab the actual (not-scaled) width and height 
+	// Grab the actual (not-scaled) width and height
 	width = surface->w;
 	height = surface->h;
 
@@ -64,13 +69,13 @@ void Image_resource::set_position(int x, int y) {
 
 void Image_resource::render(SDL_Rect* clip_rect)
 {
-	// Create a rectangle that defines where the texture should be draw and 
+	// Create a rectangle that defines where the texture should be draw and
 	// at what size
 	SDL_Rect dest_rect = {
 		position_x * Setting::scale_factor,
 		position_y * Setting::scale_factor,
-		width * Setting::scale_factor, 
-		height * Setting::scale_factor 
+		width * Setting::scale_factor,
+		height * Setting::scale_factor
 	};
 
 	// If using a sprite dest_rect needs to use the width and height of a single sprite not the entire sprite sheet
@@ -79,7 +84,7 @@ void Image_resource::render(SDL_Rect* clip_rect)
 		dest_rect.h = clip_rect->h * Setting::scale_factor;
 	}
 
-	// Copy the texture to the renderer with a clipping source rectangle if 
+	// Copy the texture to the renderer with a clipping source rectangle if
 	// supplied but with no rotating or flipping
 	SDL_RenderCopyEx(Game::get_renderer(), texture, clip_rect, &dest_rect, 0.0, NULL, SDL_FLIP_NONE);
 }
