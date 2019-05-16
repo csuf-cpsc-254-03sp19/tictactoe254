@@ -13,6 +13,8 @@
 
 void About_state::init()
 {
+	//When the about state is initialized, the function will check to see which theme is
+	// currently set. It will then load the appropriate about page
 	if(GetTheme() == 1)
 	{
 		Resource_manager::load_image("about");
@@ -42,6 +44,7 @@ void About_state::update()
 
 void About_state::render()
 {
+	//Checks the theme value and renders the proper about message
 	if(GetTheme() == 1)
 	{
 		Resource_manager::get_image("about")->render();
@@ -59,6 +62,8 @@ void About_state::render()
 
 void About_state::clean_up()
 {
+	//Checks the theme value and will clean up the correct about
+	// message image
 	if(GetTheme() == 1)
 	{
 		Resource_manager::unload_image("about");
