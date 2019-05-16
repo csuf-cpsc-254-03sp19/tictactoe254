@@ -21,11 +21,14 @@ int main(int argc, char* args[])
 	}
 
 	State_manager::set_state(new Title_state());
+	
+	//Loading the BGM at game startup	
 	Resource_manager::load_sound("Spy");
 	Resource_manager::get_sound("Spy")->play();
 
 	game.run();
-
+	
+	//Unloading the BGM at game end
 	Resource_manager::unload_sound("Spy");
 	return 0;
 }
