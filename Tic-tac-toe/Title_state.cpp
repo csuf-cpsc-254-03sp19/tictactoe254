@@ -21,6 +21,7 @@ int toe_text_x;
 
 void Title_state::init()
 {
+	//This set of if statements will pull the value of theme and load the proper background for the current theme
 	if(GetTheme() == 1)
 	{
 		Resource_manager::load_image("title_background");
@@ -64,11 +65,16 @@ void Title_state::handle_events(SDL_Event& event)
 
 		// If click falls within 8px from right and 9px from top user has
 		// pressed the about button
+		//Else if the click falls in the upper left hand corner
+		// the second condition will trigger and set the theme
+		// to the next value
 		if (pixels_from_right <= 8 && pixels_from_top < 9) {
 			State_manager::set_state(new About_state());
 		}
 		else if(pixels_from_right >= 38 && pixels_from_top < 9)
 		{
+			//Finds what theme is currently loaded and
+			// loads the next theme in the cycle
 			if(GetTheme() == 1)
 			{
 				SetTheme(2);
@@ -81,7 +87,8 @@ void Title_state::handle_events(SDL_Event& event)
 			{
 				SetTheme(1);
 			}
-
+			//Once the theme has been changed, the program will load
+			// the new theme background in the game
 			if(GetTheme() == 1)
 			{
 				Resource_manager::load_image("title_background");
@@ -128,6 +135,8 @@ void Title_state::update()
 
 void Title_state::render()
 {
+	//This checks which theme is currently set and will render the
+	// appropriate background
 	if(GetTheme() == 1)
 	{
 		Resource_manager::get_image("title_background")->render();
@@ -147,6 +156,8 @@ void Title_state::render()
 
 void Title_state::clean_up()
 {
+	//This checks which theme is currently set and will clean the
+	// appropriate background images up
 	if(GetTheme() == 1)
 	{
 		Resource_manager::unload_image("title_background");
