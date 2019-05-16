@@ -6,7 +6,15 @@ Stephen Shinn		smshinn@csu.fullerton.edu
 
 Emilio Lopez		ealopez1228@csu.fullerton.edu
 
+## How to Play
 
+This is a two player game. Clicking the mouse on the title screen will advance to the play screen. To place a piece on the grid click the mouse in the desired grid area. Once a win or draw message is displayed, clicking again will return to the title screen.
+
+## Additional Functionality
+
+* Clicking the top left button in the title screen will cycle the game's color themes.
+* Background music automatically begins when on title screen. 
+* Background music can be muted/unmuted using the ```M``` key while playing the game.
 
 ## Compiling
 Linux
