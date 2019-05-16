@@ -14,7 +14,8 @@
 
 void Play_state::init()
 {
-	cout << "Theme is: " << GetTheme();
+	//Checks the theme and will load the corresponding set of sprites to the resource
+	// manager
 	if(GetTheme() == 1)
 	{
 		Resource_manager::load_image("cell_sprite");;
@@ -86,6 +87,7 @@ void Play_state::render()
 
 void Play_state::clean_up()
 {
+	//Pulls the theme and will clean up the set of sprites that are loaded for the current theme
 	if(GetTheme() == 1)
 	{
 		Resource_manager::unload_image("cell_sprite");;
