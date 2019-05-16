@@ -37,11 +37,9 @@ void Play_state::init()
 	Resource_manager::load_sound("invalid_move");
 	Resource_manager::load_sound("win");
 	Resource_manager::load_sound("draw");
-	//Resource_manager::load_sound("Spy");
 
 	grid.init();
 
-	//Resource_manager::get_sound("Spy")->play();
 }
 
 void Play_state::handle_events(SDL_Event& event)
@@ -49,6 +47,10 @@ void Play_state::handle_events(SDL_Event& event)
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
 		advance_game();
 	}
+	
+	// Using the SDL library to detect a keypress and the type of key pressed.
+	// When the key "M" is pressed, there is a check to see if music is playing
+	// if music is playing, unload sound, if music is not playing, load sound.
 	if (event.type == SDL_KEYDOWN) {
 		if (event.key.keysym.sym == SDLK_m)
 		if(bgm_mute) {
@@ -108,7 +110,6 @@ void Play_state::clean_up()
 	Resource_manager::unload_sound("invalid_move");
 	Resource_manager::unload_sound("win");
 	Resource_manager::unload_sound("draw");
-	//Resource_manager::unload_sound("Spy");
 }
 
 void Play_state::advance_game() {
