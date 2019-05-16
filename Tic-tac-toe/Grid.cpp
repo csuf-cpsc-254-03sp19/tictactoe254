@@ -33,7 +33,8 @@ void Grid::render()
 	for (int col = 0; col < Setting::grid_columns; col++) {
 		for (int row = 0; row < Setting::grid_rows; row++) {
 
-			// Position sprites in grid layout
+			// Checks the theme and pulls the correct image form the resource manager.
+			// Will also load the proper coordinates for the sprites that are being used
 			if(GetTheme() == 1)
 			{
 				Resource_manager::get_image("cell_sprite")->set_position(col * Setting::grid_sprite_width, row  * Setting::grid_sprite_height);
@@ -48,7 +49,7 @@ void Grid::render()
 			}
 
 
-			// Render sprite with current clipping rectangle
+			// Checks the them and renders the sprites that correspond with the current theme setting
 			if(GetTheme() == 1)
 			{
 				Resource_manager::get_image("cell_sprite")->render(&sprite_clips[cell[col][row].current_sprite]);
