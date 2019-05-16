@@ -2,19 +2,12 @@
 
 
 ## Collaborators:
-
-
 Stephen Shinn		smshinn@csu.fullerton.edu
-
 Emilio Lopez		ealopez1228@csu.fullerton.edu
 
 
 
-
-
-
-## COMPILING
-
+## Compiling
 Linux
 
 Use your package manager to install SDL2 and SDL2mixer e.g. ```apt-get install libsdl2-dev libsdl2-mixer-dev``` for Ubuntu/Debian or yum install SDL2-devel SDL2_mixer-devel for Fedora/CentOS.
