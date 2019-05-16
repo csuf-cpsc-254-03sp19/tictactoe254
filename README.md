@@ -1,7 +1,7 @@
-# CPSC 254-03 Semester Project - Game Project
+# CPSC 254-03 Semester Project - Tic-Tac-Toe Game Project
 
 
-## Collaborators:
+## Collaborators
 Stephen Shinn		smshinn@csu.fullerton.edu
 
 Emilio Lopez		ealopez1228@csu.fullerton.edu
